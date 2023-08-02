@@ -1,0 +1,57 @@
+<div class="navBar">
+    <h1>Green Leaves</h1>
+    
+</div>
+<form [formGroup]="formulario">
+    <div>
+        <h2>Nombre</h2>
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="name">
+        </mat-form-field>
+    </div>
+    <div>
+        <h2>Email</h2>
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="email">
+        </mat-form-field>
+    </div>
+    <div>
+        <h2>Teléfono</h2>
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="phone">
+        </mat-form-field>
+    </div>
+    <div>
+        <h2>Fecha: </h2>
+        <mat-form-field>
+            <mat-label>Elija una fecha</mat-label>
+            <input [min]="minDate" matInput [matDatepicker]="picker" formControlName="date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div>
+        <h2>Ciudad: </h2>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Ciudad o estado</mat-label>
+            
+            <input type="text" 
+                placeholder="Ciudad o estado"
+                aria-label="Ciudad o estado"
+                matInput formControlName="cityState"
+                [matAutocomplete]="auto">
+
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" 
+            mat-button 
+            class="button" 
+            type="button" 
+            (click)="enviarNotificacion()">Enviar</button>
+</form>
